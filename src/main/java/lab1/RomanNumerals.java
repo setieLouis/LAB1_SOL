@@ -26,7 +26,9 @@ public class RomanNumerals
 
     private String getDozens(int value) {
         value /= 10;
-        if( value == FIVE)
+        if (value == 4)
+            return  "XL";
+       else  if( value == FIVE)
             return "L";
         else if( value > 5 )
             return "L" + repeatSimbol("X", value - 5 );
