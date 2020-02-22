@@ -19,13 +19,11 @@ public class RomanNumerals
     private static int FIVE = 5;
     private static int THREE = 3;
 
-    public static void main(String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
-
+    /************
+     * @param Arabic to roman
+     * @return String
+     */
     public String arabicToRoman(int value) {
-
         if(value <= 0)
             throw  new IllegalArgumentException();
         int  unit = value % TEN;
@@ -38,11 +36,20 @@ public class RomanNumerals
     private String getThousands(int value) {
       return repeatSimbol("M", value);
     }
-
     private String gethundreds(int value) {
         if(value > THREE_HUNDREDS)
             return hundredsUpperThreeHundreds(value);
         return  repeatSimbol("C", value/HUNDREDS);
+    }
+    private String getDozens(int value) {
+        if(value > THIRTY)
+            return dozensUpperThirty(value);
+        return  repeatSimbol("X", value/10);
+    }
+    private String getUnit(int value) {
+        if(value > THREE)
+            return unitUpperThree(value);
+        return  repeatSimbol("I", value);
     }
 
     private String hundredsUpperThreeHundreds(int  value){
@@ -50,29 +57,14 @@ public class RomanNumerals
             return getSpecialUnit(FIVE_HUNDREDS)  +    repeatSimbol("C" ,(value -  FIVE_HUNDREDS)/HUNDREDS );
         return getSpecialUnit(value);
     }
-
-    private String getDozens(int value) {
-        if(value > THIRTY)
-            return dozensUpperThirty(value);
-        return  repeatSimbol("X", value/10);
-    }
-
     private String dozensUpperThirty(int  value){
         if(value > FIFTY  && value < NINETY)
             return getSpecialUnit(FIFTY)  +    repeatSimbol("X" ,(value -  FIFTY)/10 );
         return getSpecialUnit(value);
     }
-
-
-    private String getUnit(int value) {
-        if(value > THREE)
-           return unitUpperThree(value);
-       return  repeatSimbol("I", value);
-    }
-
     private String unitUpperThree(int value ){
         if(value > FIVE && value < NINE)
-          return getSpecialUnit(FIVE)  +    repeatSimbol("I" ,value -  FIVE );
+            return getSpecialUnit(FIVE)  +    repeatSimbol("I" ,value -  FIVE );
         return getSpecialUnit(value);
     }
 
@@ -96,5 +88,12 @@ public class RomanNumerals
         for(int i = 0; i < times ; i++)
             result += simbol;
         return result;
+    }
+
+
+
+    public String romanToArabic(String i) {
+
+        return null;
     }
 }

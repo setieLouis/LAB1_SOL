@@ -111,7 +111,7 @@ public class RomanNumeralsTest {
 		assertThat(romanNumerals.arabicToRoman(1207)).isEqualTo("MCCVII");
 	}
 
-/*
+
 	@Test
 	public void mixRomanToArabic() {
 		assertThat(romanNumerals.romanToArabic("I")).isEqualTo(1);
