@@ -12,13 +12,14 @@ public class RomanNumeralsTest {
 
     @Before
     public void setUp(){
-        gtromanNumerals = new RomanNumerals();
+        romanNumerals = new RomanNumerals();
     }
 
-/*
+
 	@Test
 	public void oneTwoThree() {
-		assertThat(romanNumerals.arabicToRoman(1)).isEqualTo("I");
+    	String result = romanNumerals.arabicToRoman(1);
+		assertThat(result).isEqualTo("I");
 		assertThat(romanNumerals.arabicToRoman(2)).isEqualTo("II");
 		assertThat(romanNumerals.arabicToRoman(3)).isEqualTo("III");
 	}
