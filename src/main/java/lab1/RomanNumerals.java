@@ -84,6 +84,7 @@ public class RomanNumerals
             case 40: return "XL";
             case 50: return "L";
             case 90: return "XC";
+            case 500: return "D";
             case 400: return "CD";
             case 900: return "CM";
             default: return "";
