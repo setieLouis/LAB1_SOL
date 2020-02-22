@@ -25,11 +25,18 @@ public class RomanNumerals
     }
 
     private String getDozens(int value) {
-        if( value == TEN)
-            return "X";
-        else if( value == FIFTY)
+        value /= 10;
+
+        if( value == FIVE)
             return "L";
-        return "";
+        else if( value > 5 )
+            return "L" + getDozens((value - 5)  * TEN);
+        
+        String result ="";
+        for(int i = 0; i < value ; i++)
+            result += "X";
+        return result;
+
     }
 
     private String getUnit(int value) {
