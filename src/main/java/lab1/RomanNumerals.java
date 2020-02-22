@@ -26,31 +26,22 @@ public class RomanNumerals
 
     private String getDozens(int value) {
         value /= 10;
-
         if( value == FIVE)
             return "L";
         else if( value > 5 )
-            return "L" + getDozens((value - 5)  * TEN);
-        
-        String result ="";
-        for(int i = 0; i < value ; i++)
-            result += "X";
-        return result;
-
+            return "L" + repeatSimbol("X", value - 5 );
+        return  repeatSimbol("X", value);
     }
 
     private String getUnit(int value) {
-        String result ="";
         if(value > THREE)
            return unitUpperFive(value);
-        for(int i = 0; i < value ; i++)
-            result += "I";
-        return result;
+       return  repeatSimbol("I", value);
     }
 
     private String unitUpperFive(int value ){
         if(value > FIVE && value < NINE)
-          return getSpecialUnit(FIVE)  +   getUnit(value -  FIVE );
+          return getSpecialUnit(FIVE)  +    repeatSimbol("I" ,value -  FIVE );
         return getSpecialUnit(value);
     }
 
@@ -61,5 +52,12 @@ public class RomanNumerals
             case 9: return "IX";
             default: return "";
         }
+    }
+
+    private String repeatSimbol(String simbol ,  int times){
+        String result ="";
+        for(int i = 0; i < times ; i++)
+            result += simbol;
+        return result;
     }
 }
