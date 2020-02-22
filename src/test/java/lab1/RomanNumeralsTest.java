@@ -55,7 +55,7 @@ public class RomanNumeralsTest {
 		assertThat(romanNumerals.arabicToRoman(14)).isEqualTo("XIV");
 	}
 
-/*
+
 	@Test
 	public void twentySixEightythree() {
 		assertThat(romanNumerals.arabicToRoman(26)).isEqualTo("XXVI");
