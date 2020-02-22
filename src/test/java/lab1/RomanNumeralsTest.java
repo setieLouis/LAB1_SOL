@@ -71,7 +71,7 @@ public class RomanNumeralsTest {
 		assertThat(romanNumerals.arabicToRoman(49)).isEqualTo("XLIX");
 	}
 
-/*
+
 	@Test
 	public void oneHundredFivehundredOnethousand() {
 		assertThat(romanNumerals.arabicToRoman(100)).isEqualTo("C");
