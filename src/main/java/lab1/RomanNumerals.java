@@ -6,44 +6,54 @@ package lab1;
  */
 public class RomanNumerals
 {
-    public static void main( String[] args )
+    public static final int CENT = 100;
+    public static final int TEN = 10;
+    public static final int FIFTY = 50;
+    private static int NINE = 9;
+    private static int FIVE = 5;
+    private static int THREE = 3;
+
+    public static void main(String[] args )
     {
         System.out.println( "Hello World!" );
     }
 
     public String arabicToRoman(int value) {
-        int  unit = value % 10;
-        int  dozens = (value % 100)  - unit;
+        int  unit = value % TEN;
+        int  dozens = (value % CENT)  - unit;
         return  getDozens(dozens) + getUnit(unit);
-
     }
 
     private String getDozens(int value) {
-        if( value == 10)
+        if( value == TEN)
             return "X";
-        else if( value == 50)
+        else if( value == FIFTY)
             return "L";
         return "";
     }
 
     private String getUnit(int value) {
-
         String result ="";
-
-        if(value > 5 )
-            return "V" + getUnit( value - 5);
-
-
-        if(value == 5 )
-            return "V";
-        else if(value == 4)
-           return getUnit(1) + getUnit(5);
-        else if(value == 9)
-            return getUnit(1) + getDozens(10);
+        if(value > THREE)
+           return unitUpperFive(value);
         for(int i = 0; i < value ; i++)
             result += "I";
         return result;
     }
 
+    private String unitUpperFive(int value ){
+        if(value > FIVE && value < NINE)
+          return getSpecialUnit(FIVE)  +   getUnit(value -  FIVE );
+        return getSpecialUnit(value);
+    }
+
+    private String   getSpecialUnit(int value ){
+        switch (value){
+            case 4:  return "IV";
+            case 5: return "V";
+            case 9: return "IX";
+            default: return "";
+        }
+    }
 
 }

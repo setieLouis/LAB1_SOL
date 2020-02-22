@@ -7,14 +7,12 @@ import org.junit.Test;
 
 public class RomanNumeralsTest {
 
-
    private RomanNumerals romanNumerals;
 
     @Before
     public void setUp(){
         romanNumerals = new RomanNumerals();
     }
-
 
 	@Test
 	public void oneTwoThree() {
@@ -29,7 +27,6 @@ public class RomanNumeralsTest {
 	public void five() {
 		assertThat(romanNumerals.arabicToRoman(5)).isEqualTo("V");
 	}
-
 
 	@Test
 	public void tenFifty() {
