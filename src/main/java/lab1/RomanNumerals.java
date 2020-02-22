@@ -8,7 +8,9 @@ public class RomanNumerals
 {
     public static final int CENT = 100;
     public static final int TEN = 10;
+    public static final int THIRTY = 30;
     public static final int FIFTY = 50;
+    public static final int NINETY = 90;
     private static int NINE = 9;
     private static int FIVE = 5;
     private static int THREE = 3;
@@ -41,23 +43,24 @@ public class RomanNumerals
     }
 
     private String getDozens(int value) {
-        value /= 10;
-        if (value == 4)
-            return  "XL";
-       else  if( value == FIVE)
-            return "L";
-        else if( value > 5 )
-            return "L" + repeatSimbol("X", value - 5 );
-        return  repeatSimbol("X", value);
+        if(value > THIRTY)
+            return dozensUpperThirty(value);
+        return  repeatSimbol("X", value/10);
+    }
+
+    private String dozensUpperThirty(int  value){
+        if(value > FIFTY  && value < NINETY)
+            return getSpecialUnit(FIFTY)  +    repeatSimbol("X" ,(value -  FIFTY)/10 );
+        return getSpecialUnit(value);
     }
 
     private String getUnit(int value) {
         if(value > THREE)
-           return unitUpperFive(value);
+           return unitUpperThree(value);
        return  repeatSimbol("I", value);
     }
 
-    private String unitUpperFive(int value ){
+    private String unitUpperThree(int value ){
         if(value > FIVE && value < NINE)
           return getSpecialUnit(FIVE)  +    repeatSimbol("I" ,value -  FIVE );
         return getSpecialUnit(value);
@@ -68,6 +71,11 @@ public class RomanNumerals
             case 4:  return "IV";
             case 5: return "V";
             case 9: return "IX";
+            case 40: return "XL";
+            case 50: return "L";
+            case 90: return "XC";
+            case 400: return "CD";
+            case 900: return "CM";
             default: return "";
         }
     }

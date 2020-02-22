@@ -79,16 +79,17 @@ public class RomanNumeralsTest {
 		assertThat(romanNumerals.arabicToRoman(1000)).isEqualTo("M");
 	}
 
-/*
+
 	@Test
 	public void mixSix() {
-		assertThat(romanNumerals.arabicToRoman(96)).isEqualTo("XCVI");
+		/*assertThat(romanNumerals.arabicToRoman(96)).isEqualTo("XCVI");
 		assertThat(romanNumerals.arabicToRoman(496)).isEqualTo("CDXCVI");
 		assertThat(romanNumerals.arabicToRoman(996)).isEqualTo("CMXCVI");
-		assertThat(romanNumerals.arabicToRoman(2996)).isEqualTo("MMCMXCVI");
+		assertThat(romanNumerals.arabicToRoman(2996)).isEqualTo("MMCMXCVI");*/
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+
+/*	@Test(expected=IllegalArgumentException.class)
 	public void illegalArgumentTest(){
 		romanNumerals.arabicToRoman(0);
 	}
