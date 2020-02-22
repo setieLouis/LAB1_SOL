@@ -24,7 +24,7 @@ public class RomanNumeralsTest {
 		assertThat(romanNumerals.arabicToRoman(3)).isEqualTo("III");
 	}
 
-/*
+
 	@Test
 	public void five() {
 		assertThat(romanNumerals.arabicToRoman(5)).isEqualTo("V");
