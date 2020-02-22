@@ -30,7 +30,7 @@ public class RomanNumeralsTest {
 		assertThat(romanNumerals.arabicToRoman(5)).isEqualTo("V");
 	}
 
-/*
+
 	@Test
 	public void tenFifty() {
 		assertThat(romanNumerals.arabicToRoman(10)).isEqualTo("X");
