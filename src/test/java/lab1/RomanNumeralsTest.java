@@ -99,7 +99,7 @@ public class RomanNumeralsTest {
 		romanNumerals.arabicToRoman(-33);
 	}
 
-/*
+
 	@Test
 	public void mixArabicToRoman() {
 		assertThat(romanNumerals.arabicToRoman(1223)).isEqualTo("MCCXXIII");
