@@ -21,7 +21,23 @@ public class RomanNumerals
     public String arabicToRoman(int value) {
         int  unit = value % TEN;
         int  dozens = (value % CENT)  - unit;
-        return  getDozens(dozens) + getUnit(unit);
+        int hunderds = (value % 1000 ) - (dozens + unit);
+        int  thousands = (value / 1000 ) ;
+        return getThousands(thousands)  +  gethundreds(hunderds)  + getDozens(dozens) + getUnit(unit);
+    }
+
+    private String getThousands(int thousands) {
+        if(thousands == 1)
+            return "M";
+        return "" ;
+    }
+
+    private String gethundreds(int hunderds) {
+        if(hunderds == 100)
+            return "C";
+        else if (hunderds == 500)
+          return "D";
+        return "";
     }
 
     private String getDozens(int value) {
