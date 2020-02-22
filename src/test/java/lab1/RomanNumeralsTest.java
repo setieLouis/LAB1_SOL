@@ -44,7 +44,7 @@ public class RomanNumeralsTest {
 		assertThat(romanNumerals.arabicToRoman(9)).isEqualTo("IX");
 	}
 
-/*
+
 	@Test
 	public void sixSevenEight() {
 		assertThat(romanNumerals.arabicToRoman(6)).isEqualTo("VI");
