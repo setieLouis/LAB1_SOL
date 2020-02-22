@@ -29,6 +29,11 @@ public class RomanNumerals
     private String getUnit(int value) {
 
         String result ="";
+
+        if(value > 5 )
+            return "V" + getUnit( value - 5);
+
+
         if(value == 5 )
             return "V";
         else if(value == 4)
