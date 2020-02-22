@@ -85,7 +85,7 @@ public class RomanNumeralsTest {
 		 assertThat(romanNumerals.arabicToRoman(96)).isEqualTo("XCVI");
 		assertThat(romanNumerals.arabicToRoman(496)).isEqualTo("CDXCVI");
 		assertThat(romanNumerals.arabicToRoman(996)).isEqualTo("CMXCVI");
-		assertThat(romanNumerals.arabicToRoman(2996)).isEqualTo("MMCMXCVI");*/
+		assertThat(romanNumerals.arabicToRoman(2996)).isEqualTo("MMCMXCVI");
 	}
 
 
