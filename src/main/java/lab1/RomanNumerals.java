@@ -31,7 +31,10 @@ public class RomanNumerals
         String result ="";
         if(value == 5 )
             return "V";
-
+        else if(value == 4)
+           return getUnit(1) + getUnit(5);
+        else if(value == 9)
+            return getUnit(1) + getDozens(10);
         for(int i = 0; i < value ; i++)
             result += "I";
         return result;
