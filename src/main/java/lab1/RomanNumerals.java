@@ -12,10 +12,9 @@ public class RomanNumerals
     }
 
     public String arabicToRoman(int value) {
-            if(value == 1)
-                return "I";
-            else if(value == 2)
-                return "II";
-            return "III";
+          String result = "";
+          for(int i = 0; i < value ; i++)
+              result += "I";
+          return result;
     }
 }
