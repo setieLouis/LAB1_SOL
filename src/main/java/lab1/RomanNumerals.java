@@ -1,26 +1,46 @@
 package lab1;
 
-import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
-
-import static java.util.Objects.isNull;
-
 /**
  * Hello world!
  *
  */
 public class RomanNumerals {
-    public static final int TEN = 10;
-    public static final int THIRTY = 30;
-    public static final int FIFTY = 50;
-    public static final int NINETY = 90;
-    public static final int HUNDREDS = 100;
-    public static final int THREE_HUNDREDS = 300;
-    public static final int FIVE_HUNDREDS = 500;
-    public static final int NINE_HUNDREDS = 900;
 
-    private static int NINE = 9;
-    private static int FIVE = 5;
-    private static int THREE = 3;
+    /**
+     * Roman numbers
+     */
+    public static final String ROMAN_ONE = "I";
+    public static final String ROMAN_FOUR = "IV";
+    public static final String ROMAN_FIVE = "V";
+    public static final String ROMAN_NINE = "IX";
+    public static final String ROMAN_TEN = "X";
+    public static final String ROMAN_FOURTY = "XL";
+    public static final String ROMAN_FIFTY = "L";
+    public static final String ROMAN_NINETY = "XC";
+    public static final String ROMAN_HUNDREDS = "C";
+    public static final String ROMAN_FIVE_HUNDREDS = "D";
+    public static final String ROMAN_FOUR_HUNDREDS = "CD";
+    public static final String ROMAN_NINE_HUNDREDS = "CM";
+    public static final String ROMAN_THOUSAND = "M";
+
+    /***
+     * Arabian numbers
+     */
+    private static int ARABIAN_FIVE = 5;
+    private static int ARABIAN_THREE = 3;
+    private static int ARABIAN_TWO = 2;
+    private static int ARABIAN_NINE = 9;
+    public static final int ARABIAN_TEN = 10;
+    public static final int ARABIAN_THIRTY = 30;
+    public static final int ARABIAN_FIFTY = 50;
+    public static final int ARABIAN_NINETY = 90;
+    public static final int ARABIAN_HUNDREDS = 100;
+    public static final int ARABIAN_THREE_HUNDREDS = 300;
+    public static final int ARABIAN_FIVE_HUNDREDS = 500;
+    public static final int ARABIAN_NINE_HUNDREDS = 900;
+    public static final int ARABIAN_THOUSAND = 1000;
+
+    
 
     /************
      * @param
@@ -29,73 +49,84 @@ public class RomanNumerals {
     public String arabicToRoman(int value) {
         if (value <= 0)
             throw new IllegalArgumentException();
-        int unit = value % TEN;
-        int dozens = (value % HUNDREDS) - unit;
-        int hunderds = (value % 1000) - (dozens + unit);
-        int thousands = (value / 1000);
+        int unit = value % ARABIAN_TEN;
+        int dozens = (value % ARABIAN_HUNDREDS) - unit;
+        int hunderds = (value % ARABIAN_THOUSAND) - (dozens + unit);
+        int thousands = (value / ARABIAN_THOUSAND);
         return getThousands(thousands) + gethundreds(hunderds) + getDozens(dozens) + getUnit(unit);
     }
 
     private String getThousands(int value) {
-        return repeatSimbol("M", value);
+        return repeatSimbol(ROMAN_THOUSAND, value);
     }
 
     private String gethundreds(int value) {
-        if (value > THREE_HUNDREDS)
+        if (value > ARABIAN_THREE_HUNDREDS)
             return hundredsUpperThreeHundreds(value);
-        return repeatSimbol("C", value / HUNDREDS);
+
+        int times = value / ARABIAN_HUNDREDS;
+        return repeatSimbol(ROMAN_HUNDREDS, times);
     }
 
-    private String getDozens(int value) {
-        if (value > THIRTY)
+        private String getDozens(int value) {
+            if (value > ARABIAN_THIRTY)
             return dozensUpperThirty(value);
-        return repeatSimbol("X", value / 10);
+
+        int times = value / ARABIAN_TEN;
+        return repeatSimbol(ROMAN_TEN, times);
     }
 
     private String getUnit(int value) {
-        if (value > THREE)
+        if (value > ARABIAN_THREE)
             return unitUpperThree(value);
-        return repeatSimbol("I", value);
+        return repeatSimbol(ROMAN_ONE, value);
     }
 
     private String hundredsUpperThreeHundreds(int value) {
-        if (value > FIVE_HUNDREDS && value < NINE_HUNDREDS)
-            return getSpecialUnit(FIVE_HUNDREDS) + repeatSimbol("C", (value - FIVE_HUNDREDS) / HUNDREDS);
+        if (value > ARABIAN_FIVE_HUNDREDS && value < ARABIAN_NINE_HUNDREDS){
+            int times = (value - ARABIAN_FIVE_HUNDREDS) / ARABIAN_HUNDREDS;
+            return getSpecialUnit(ARABIAN_FIVE_HUNDREDS) + repeatSimbol(ROMAN_HUNDREDS, times);
+        }
         return getSpecialUnit(value);
     }
 
     private String dozensUpperThirty(int value) {
-        if (value > FIFTY && value < NINETY)
-            return getSpecialUnit(FIFTY) + repeatSimbol("X", (value - FIFTY) / 10);
+        if (value > ARABIAN_FIFTY && value < ARABIAN_NINETY){
+            int times = (value - ARABIAN_FIFTY) / ARABIAN_TEN;
+            return getSpecialUnit(ARABIAN_FIFTY) + repeatSimbol(ROMAN_TEN, times);
+        }
+
         return getSpecialUnit(value);
     }
 
     private String unitUpperThree(int value) {
-        if (value > FIVE && value < NINE)
-            return getSpecialUnit(FIVE) + repeatSimbol("I", value - FIVE);
+        if (value > ARABIAN_FIVE && value < ARABIAN_NINE) {
+            int times = value - ARABIAN_FIVE;
+            return getSpecialUnit(ARABIAN_FIVE) + repeatSimbol(RomanNumerals.ROMAN_ONE, times);
+        }
         return getSpecialUnit(value);
     }
 
     private String getSpecialUnit(int value) {
         switch (value) {
             case 4:
-                return "IV";
+                return ROMAN_FOUR;
             case 5:
-                return "V";
+                return ROMAN_FIVE;
             case 9:
-                return "IX";
+                return ROMAN_NINE;
             case 40:
-                return "XL";
+                return ROMAN_FOURTY;
             case 50:
-                return "L";
+                return ROMAN_FIFTY;
             case 90:
-                return "XC";
+                return ROMAN_NINETY;
             case 500:
-                return "D";
+                return ROMAN_FIVE_HUNDREDS;
             case 400:
-                return "CD";
+                return ROMAN_FOUR_HUNDREDS;
             case 900:
-                return "CM";
+                return ROMAN_NINE_HUNDREDS;
             default:
                 return "";
         }
@@ -108,7 +139,6 @@ public class RomanNumerals {
         return result;
     }
 
-
     public Integer romanToArabic(String roman) {
 
         if("IIII".equals(roman)
@@ -120,14 +150,14 @@ public class RomanNumerals {
         )
             throw new IllegalArgumentException("Invalid Roman numeral");
 
-
         String[] lista = roman.split("");
         Integer result = 0;
         for (int i = 0; i < lista.length; i++) {
             int curr = 1;
-            if(!lista[i].equals("I"))
-                curr = getArabianSpecialValue(lista[i] , (i > 0)?lista[i - 1]:null);
-
+            if(!lista[i].equals(RomanNumerals.ROMAN_ONE)){
+                String prec = (i > 0) ? lista[i - 1] : null;
+                curr = getArabianSpecialValue(lista[i] , prec);
+            }
             result += curr;
         }
         return result;
@@ -136,39 +166,36 @@ public class RomanNumerals {
     private int getArabianSpecialValue(String value , String prec) {
         int curr = 0;
         switch (value){
-            case "V":
-                 curr = checkPrecedent("I", prec,5);
+            case ROMAN_FIVE:
+                 curr = checkPrecedent(RomanNumerals.ROMAN_ONE, prec, ARABIAN_FIVE);
                 break;
-            case "X":
-                curr = checkPrecedent("I", prec,10);
+            case ROMAN_TEN:
+                curr = checkPrecedent(RomanNumerals.ROMAN_ONE, prec,ARABIAN_TEN);
                 break;
             case "L":
-                curr = checkPrecedent("X", prec,50);
+                curr = checkPrecedent(ROMAN_TEN, prec,ARABIAN_FIFTY);
                 break;
-            case "C":
-                curr = checkPrecedent("X",prec,100);
+            case ROMAN_HUNDREDS:
+                curr = checkPrecedent(ROMAN_TEN,prec,ARABIAN_HUNDREDS);
                 break;
             case "D":
-                curr = checkPrecedent("C",prec,500);
+                curr = checkPrecedent(ROMAN_HUNDREDS,prec,ARABIAN_FIVE_HUNDREDS);
                 break;
-            case "M":
-                curr = checkPrecedent("C",prec,1000);
+            case ROMAN_THOUSAND:
+                curr = checkPrecedent(ROMAN_HUNDREDS,prec,ARABIAN_THOUSAND);
                 break;
         }
-
         return curr;
     }
 
-
-    private int checkPrecedent(String simbol,  String prec , int value){
-
-        int multiple = 2;
+    private int checkPrecedent(String simbol,  String prec , int value){gi
+        int multiple = ARABIAN_TWO;
         switch (simbol){
-            case "X":
-                  multiple *= 10;
+            case ROMAN_TEN:
+                  multiple *= ARABIAN_TEN;
                   break;
-          case "C":
-                multiple *= 100;
+          case ROMAN_HUNDREDS:
+                multiple *= ARABIAN_HUNDREDS;
                 break;
         }
         if (simbol.equals(prec))
